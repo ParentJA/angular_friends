@@ -1,0 +1,26 @@
+{
+  "name": "angular_friends",
+  "version": "0.0.0",
+  "authors": [
+    "jason.a.parent@gmail.com (Jason Parent)"
+  ],
+  "description": "An single page application version of Friends.",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "bootstrap": "~3.3.5",
+    "bootswatch": "~3.3.5+2",
+    "jquery": "~2.1.4",
+    "ui-router": "~0.2.15",
+    "lodash": "~3.10.1",
+    "restangular": "~1.5.1"
+  }
+}

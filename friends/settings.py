@@ -98,11 +98,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'friends', 'static'),
+    os.path.join(BASE_DIR, 'www/app/'),
+    os.path.join(BASE_DIR, 'www/bower_components/'),
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'friends', 'templates'),
+    os.path.join(BASE_DIR, 'www/app/'),
 )
 
 from django.contrib.messages import constants as message_constants
