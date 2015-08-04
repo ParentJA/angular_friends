@@ -1,0 +1,21 @@
+{% if users %}
+    <ul class="media-list">
+        {% for user in users %}
+            <li class="media">
+                <div class="media-left media-middle">
+                    {% if user.photo_url %}
+                        <img class="media-object img-circle" src="{{ user.photo_url }}" width="55" height="55">
+                    {% else %}
+                        <div class="media-object"></div>
+                    {% endif %}
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ user.get_full_name }}</h4>
+                    <button class="btn btn-default btn-xs" type="button" disabled>Friends</button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="text-center text-muted temporary">No friends</p>
+{% endif %}

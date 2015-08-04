@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block page-styles %}
+    <style>
+        #users-tabs {
+            margin-bottom: 10px;
+        }
+
+        #search_results {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock page-styles %}
+
+{% block page-navigation %}
+    {% include 'snippets/navigation.html' with active='users' %}
+{% endblock page-navigation %}
+
+{% block page-content %}
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <ul id="users-tabs" class="nav nav-pills nav-justified">
+                <li class="active">
+                    <a id="search_tab" href="#search_pane" data-toggle="pill">Search</a>
+                </li>
+                <li>
+                    <a id="requests_tab" href="#requests_pane" data-toggle="pill">Requests</a>
+                </li>
+                <li>
+                    <a id="browse_tab" href="#browse_pane" data-toggle="pill">Browse</a>
+                </li>
+                <li>
+                    <a id="friends_tab" href="#friends_pane" data-toggle="pill">Friends</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="search_pane" class="tab-pane active">
+                    <div class="input-group">
+                        <input id="search_field" class="form-control" input="text" placeholder="Name or email">
+                        <span class="input-group-btn">
+                            <button id="search_button" class="btn btn-default" type="button">Search</button>
+                        </span>
+                    </div>
+                    <div id="search_results"></div>
+                </div>
+                <div id="requests_pane" class="tab-pane">
+                    <div id="requests_results"></div>
+                </div>
+                <div id="browse_pane" class="tab-pane">
+                    <div id="browse_results"></div>
+                </div>
+                <div id="friends_pane" class="tab-pane">
+                    <div id="friends_results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock page-content %}
+
+{% block page-scripts %}
+    <script>
+        $(function() {
+            $("a[data-toggle='pill']").click(function(event) {
+                event.preventDefault();
+
+                $(this).tab("show");
+            });
+
+            $("#search_button").click(function() {
+                var search = $("#search_field").val();
+                var params = $.param({search: search});
+                var url = "{% url 'users:list' %}" + "?" + params;
+
+                $("#search_results").load(url);
+            });
+
+            $("#requests_tab").click(function() {
+                var url = "{% url 'users:requests' %}";
+
+                $("#requests_results").load(url);
+            });
+
+            $("#browse_tab").click(function() {
+                var url = "{% url 'users:list' %}";
+
+                $("#browse_results").load(url);
+            });
+
+            $("#friends_tab").click(function() {
+                var url = "{% url 'users:friends' %}";
+
+                $("#friends_results").load(url);
+            });
+        });
+    </script>
+{% endblock page-scripts %}
