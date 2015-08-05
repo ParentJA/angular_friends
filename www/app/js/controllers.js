@@ -63,7 +63,15 @@
 
   function ProfileController($scope) {}
 
-  function FeedController($scope) {}
+  function FeedController($scope, feedService) {
+    $scope.models = {
+      events: feedService.getFeed().$object
+    };
+
+    $scope.hasEvents = function hasEvents() {
+      return !_.isEmpty($scope.models.events);
+    };
+  }
 
   function UsersController($scope, $state) {
     function init() {
@@ -111,7 +119,7 @@
     .controller("LogInController", ["$scope", "$state", "authenticationService", LogInController])
     .controller("SignUpController", ["$scope", "authenticationService", SignUpController])
     .controller("ProfileController", ["$scope", ProfileController])
-    .controller("FeedController", ["$scope", FeedController])
+    .controller("FeedController", ["$scope", "feedService", FeedController])
     .controller("UsersController", ["$scope", "$state", UsersController])
     .controller("SearchController", ["$scope", SearchController])
     .controller("RequestsController", ["$scope", "accountsService", RequestsController])

@@ -100,8 +100,15 @@
     };
   }
 
+  function feedService(Restangular) {
+    this.getFeed = function getFeed() {
+      return Restangular.all("users").all("feed").getList();
+    };
+  }
+
   angular.module("app")
     .service("authenticationService", ["$cookies", "$state", "Restangular", authenticationService])
-    .service("accountsService", ["Restangular", accountsService]);
+    .service("accountsService", ["Restangular", accountsService])
+    .service("feedService", ["Restangular", feedService]);
 
 })(window, window.angular);

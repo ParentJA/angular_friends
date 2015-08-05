@@ -14,9 +14,10 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^api/v1/accounts/', include('accounts.urls')),
     url(r'^api/v1/auth/login/$', LogInView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogOutView.as_view(), name='logout'),
+    url(r'^api/v1/accounts/', include('accounts.urls')),
+    url(r'^api/v1/users/', include('users.urls')),
     url(r'^profile/$', 'accounts.views.profile_view', name='profile'),
     url(r'^profile/edit/$', 'accounts.views.profile_edit_view', name='profile_edit'),
     # url(r'^accounts/', include('accounts.urls', namespace='accounts')),
