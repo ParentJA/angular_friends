@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -40,6 +41,7 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'localflavor',
+    'rest_framework'
 )
 
 LOCAL_APPS = (
@@ -51,6 +53,17 @@ LOCAL_APPS = (
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 AUTH_USER_MODEL = 'accounts.User'
+
+REST_METHODS = {
+    'get': 'list',
+    'post': 'create'
+}
+
+REST_METHODS_PK = {
+    'get': 'retrieve',
+    'put': 'update',
+    'delete': 'destroy'
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
@@ -5,73 +7,65 @@
   <meta name="viewport"
         content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>Angular Friends</title>
-  <link rel="stylesheet" href="{{ STATIC_URL }}bootswatch/cosmo/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/app.css">
+  <link rel="stylesheet" href="{% static 'bootswatch/cosmo/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
-<body>
+<body ng-controller="MainController">
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      {% if user.is_authenticated %}
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-content">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      {% endif %}
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-content"
+              ng-if="isUserAuthenticated()">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" ui-sref="home">Friends</a>
     </div>
-    <div id="navbar-content" class="collapse navbar-collapse">
-      {% if user.is_authenticated %}
-        {% block page-navigation %}
-          <ul class="nav navbar-nav">
-            <li ng-class="{active: $state.is('users.feed')}">
-              <a id="feed-button" ui-sref="users.feed">Feed</a>
-            </li>
-            <li ng-class="{active: $state.is('users.home')}">
-              <a id="users-button" ui-sref="users.home">Users</a>
-            </li>
-          </ul>
-        {% endblock page-navigation %}
-        <div class="navbar-right">
-          <p class="navbar-text">Signed in as {{ user.first_name|capfirst }}</p>
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a id="menu_button" class="dropdown-toggle" href="#" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="{% url 'profile' %}">Profile</a>
-                </li>
-                <li>
-                  <a id="log_out_button" href="{% url 'log_out' %}">Log out</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      {% endif %}
+    <div id="navbar-content" class="collapse navbar-collapse" ng-if="isUserAuthenticated()">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.is('users.feed')}">
+          <a ui-sref="users.feed">Feed</a>
+        </li>
+        <li ng-class="{active: $state.is('users.home')}">
+          <a ui-sref="users.home">Users</a>
+        </li>
+      </ul>
+      <div class="navbar-right">
+        <p class="navbar-text">Signed in as <span ng-bind="getUser().first_name"></span></p>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a ui-sref="profile">Profile</a>
+              </li>
+              <li>
+                <a ng-click="logOut()">Log out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div ui-view></div>
-    </div>
-  </div>
+  <div ui-view></div>
 </div>
-<script src="{{ STATIC_URL }}jquery/dist/jquery.min.js"></script>
-<script src="{{ STATIC_URL }}bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}angular/angular.min.js"></script>
-<script src="{{ STATIC_URL }}lodash/lodash.min.js"></script>
-<script src="{{ STATIC_URL }}restangular/dist/restangular.min.js"></script>
-<script src="{{ STATIC_URL }}ui-router/release/angular-ui-router.min.js"></script>
-<script src="{{ STATIC_URL }}js/app.js"></script>
-<script src="{{ STATIC_URL }}js/controllers.js"></script>
-<script src="{{ STATIC_URL }}js/directives.js"></script>
-<script src="{{ STATIC_URL }}js/filters.js"></script>
-<script src="{{ STATIC_URL }}js/services.js"></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'angular/angular.min.js' %}"></script>
+<script src="{% static 'angular-cookies/angular-cookies.min.js' %}"></script>
+<script src="{% static 'lodash/lodash.min.js' %}"></script>
+<script src="{% static 'restangular/dist/restangular.min.js' %}"></script>
+<script src="{% static 'ui-router/release/angular-ui-router.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/controllers.js' %}"></script>
+<script src="{% static 'js/directives.js' %}"></script>
+<script src="{% static 'js/filters.js' %}"></script>
+<script src="{% static 'js/services.js' %}"></script>
 </body>
 </html>

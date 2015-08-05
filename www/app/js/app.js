@@ -16,6 +16,16 @@
         url: "/",
         templateUrl: "/static/views/home.html",
         controller: "HomeController"
+      })
+      .state("log_in", {
+        url: "/log_in",
+        templateUrl: "/static/views/log_in.html",
+        controller: "LogInController"
+      })
+      .state("sign_up", {
+        url: "/sign_up",
+        templateUrl: "/static/views/sign_up.html",
+        controller: "SignUpController"
       });
 
     //Default state...
@@ -26,7 +36,7 @@
     $rootScope.$state = $state;
   }
 
-  angular.module("app", ["restangular", "ui.router"])
+  angular.module("app", ["ngCookies", "restangular", "ui.router"])
     .config(["RestangularProvider", RestangularConfig])
     .config(["$stateProvider", "$urlRouterProvider", UiRouterConfig])
     .run(["$rootScope", "$state", UiRunner]);
