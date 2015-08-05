@@ -65,12 +65,29 @@
 
   function FeedController($scope, feedService) {
     $scope.models = {
-      events: feedService.getFeed().$object
+      events: [{
+        heading: "",
+        friendship: {
+          friendship_sender: {
+            photo: ""
+          },
+          friendship_receiver: {
+            photo: ""
+          }
+        },
+        updated: undefined
+      }]
     };
 
     $scope.hasEvents = function hasEvents() {
       return !_.isEmpty($scope.models.events);
     };
+
+    function init() {
+      $scope.models.events = feedService.getFeed().$object;
+    }
+
+    init();
   }
 
   function UsersController($scope, $state) {
@@ -81,36 +98,111 @@
     init();
   }
 
-  function SearchController($scope) {}
-
-  function RequestsController($scope, accountsService) {
+  function SearchController($scope, accountsService) {
     $scope.models = {
-      users: accountsService.list().$object
+      search: "",
+      searched: false,
+      users: [{
+        id: 0,
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        photo: "",
+        date_of_birth: undefined,
+        address: "",
+        phone_number: ""
+      }]
     };
 
     $scope.hasUsers = function hasUsers() {
       return !_.isEmpty($scope.models.users);
     };
+
+    $scope.search = function search() {
+      accountsService.list($scope.models.search).then(function (data) {
+        $scope.models.users = data;
+        $scope.models.searched = true;
+      });
+    };
+  }
+
+  function RequestsController($scope, accountsService) {
+    $scope.models = {
+      users: [{
+        id: 0,
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        photo: "",
+        date_of_birth: undefined,
+        address: "",
+        phone_number: ""
+      }]
+    };
+
+    $scope.hasUsers = function hasUsers() {
+      return !_.isEmpty($scope.models.users);
+    };
+
+    function init() {
+      $scope.models.users = accountsService.list().$object;
+    }
+
+    init();
   }
 
   function BrowseController($scope, accountsService) {
     $scope.models = {
-      users: accountsService.list().$object
+      users: [{
+        id: 0,
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        photo: "",
+        date_of_birth: undefined,
+        address: "",
+        phone_number: ""
+      }]
     };
 
     $scope.hasUsers = function hasUsers() {
       return !_.isEmpty($scope.models.users);
     };
+
+    function init() {
+      $scope.models.users = accountsService.list().$object;
+    }
+
+    init();
   }
 
   function FriendsController($scope, accountsService) {
     $scope.models = {
-      users: accountsService.list().$object
+      users: [{
+        id: 0,
+        username: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        photo: "",
+        date_of_birth: undefined,
+        address: "",
+        phone_number: ""
+      }]
     };
 
     $scope.hasUsers = function hasUsers() {
       return !_.isEmpty($scope.models.users);
     };
+
+    function init() {
+      $scope.models.users = accountsService.list().$object;
+    }
+
+    init();
   }
 
   angular.module("app")
@@ -121,7 +213,7 @@
     .controller("ProfileController", ["$scope", ProfileController])
     .controller("FeedController", ["$scope", "feedService", FeedController])
     .controller("UsersController", ["$scope", "$state", UsersController])
-    .controller("SearchController", ["$scope", SearchController])
+    .controller("SearchController", ["$scope", "accountsService", SearchController])
     .controller("RequestsController", ["$scope", "accountsService", RequestsController])
     .controller("BrowseController", ["$scope", "accountsService", BrowseController])
     .controller("FriendsController", ["$scope", "accountsService", FriendsController]);

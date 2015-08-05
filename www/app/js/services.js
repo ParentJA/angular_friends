@@ -79,8 +79,10 @@
   }
 
   function accountsService(Restangular) {
-    this.list = function list() {
-      return Restangular.all("accounts").getList();
+    this.list = function list(search) {
+      search = search || "";
+
+      return Restangular.all("accounts").getList({s: search});
     };
 
     this.retrieve = function retrieve() {

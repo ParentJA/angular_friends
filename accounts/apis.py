@@ -9,10 +9,12 @@ from rest_framework.response import Response
 
 # Django imports...
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.db.models import Q
 
 # Local imports...
 from .permissions import IsAccountOwner
 from .serializers import UserSerializer
+from users.models import Friendship
 
 User = get_user_model()
 
@@ -30,6 +32,26 @@ class UserViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]
 
         return [permissions.IsAuthenticated(), IsAccountOwner()]
+
+    def list(self, request):
+        search = request.query_params.get('s', '')
+
+        query = Q(
+            Q(username__icontains=search) |
+            Q(email__icontains=search) |
+            Q(first_name__icontains=search) |
+            Q(last_name__icontains=search)
+        )
+
+        # Exclude users that share a friendship with the request user...
+        friendships = Friendship.objects.get_friendships(request.user)
+        friends = Friendship.user_list_friends(request.user, friendships)
+
+        query &= ~Q(username__in=[f.username for f in friends])
+
+        users = User.objects.exclude(username=request.user.username).filter(query)
+
+        return Response(data=UserSerializer(users, many=True).data)
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data, partial=True)
