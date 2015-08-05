@@ -5,7 +5,7 @@
     this.signUp = function signUp(firstName, lastName, email, password) {
       var self = this;
 
-      return Restangular.all("accounts").post({
+      return Restangular.all("user").post({
         username: email,
         email: email,
         password: password,
@@ -31,7 +31,7 @@
       }).then(onLogInSuccess, onLogInFailure);
 
       function onLogInSuccess(data) {
-        self.setAuthenticatedAccount(data);
+        self.setAuthenticatedUser(data);
 
         $state.go("home");
       }
@@ -57,28 +57,51 @@
       }
     };
 
-    this.getAuthenticatedAccount = function getAuthenticatedAccount() {
-      if (!$cookies.get("authenticatedAccount")) {
+    this.getAuthenticatedUser = function getAuthenticatedUser() {
+      if (!$cookies.get("authenticatedUser")) {
         return;
       }
 
-      return JSON.parse($cookies.get("authenticatedAccount"));
+      return JSON.parse($cookies.get("authenticatedUser"));
     };
 
     this.isAuthenticated = function isAuthenticated() {
-      return !!$cookies.get("authenticatedAccount");
+      return !!$cookies.get("authenticatedUser");
     };
 
-    this.setAuthenticatedAccount = function setAuthenticatedAccount(account) {
-      $cookies.put("authenticatedAccount", JSON.stringify(account));
+    this.setAuthenticatedUser = function setAuthenticatedUser(user) {
+      $cookies.put("authenticatedUser", JSON.stringify(user));
     };
 
     this.unauthenticate = function unauthenticate() {
-      $cookies.remove("authenticatedAccount");
+      $cookies.remove("authenticatedUser");
+    };
+  }
+
+  function accountsService(Restangular) {
+    this.list = function list() {
+      return Restangular.all("accounts").getList();
+    };
+
+    this.retrieve = function retrieve() {
+      return Restangular.one("accounts", id).get();
+    };
+
+    this.create = function create() {
+      return Restangular.all("accounts").post(data);
+    };
+
+    this.update = function update() {
+      return Restangular.one("accounts", id).customPUT(data);
+    };
+
+    this.destroy = function destroy() {
+      return Restangular.one("accounts", id).remove();
     };
   }
 
   angular.module("app")
-    .service("authenticationService", ["$cookies", "$state", "Restangular", authenticationService]);
+    .service("authenticationService", ["$cookies", "$state", "Restangular", authenticationService])
+    .service("accountsService", ["Restangular", accountsService]);
 
 })(window, window.angular);

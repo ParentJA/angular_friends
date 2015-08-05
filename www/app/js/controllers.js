@@ -7,7 +7,7 @@
     };
 
     $scope.getUser = function getUser() {
-      return authenticationService.getAuthenticatedAccount();
+      return authenticationService.getAuthenticatedUser();
     };
 
     $scope.logOut = function logOut() {
@@ -61,10 +61,61 @@
     }
   }
 
+  function ProfileController($scope) {}
+
+  function FeedController($scope) {}
+
+  function UsersController($scope, $state) {
+    function init() {
+      $state.go("users.search");
+    }
+
+    init();
+  }
+
+  function SearchController($scope) {}
+
+  function RequestsController($scope, accountsService) {
+    $scope.models = {
+      users: accountsService.list().$object
+    };
+
+    $scope.hasUsers = function hasUsers() {
+      return !_.isEmpty($scope.models.users);
+    };
+  }
+
+  function BrowseController($scope, accountsService) {
+    $scope.models = {
+      users: accountsService.list().$object
+    };
+
+    $scope.hasUsers = function hasUsers() {
+      return !_.isEmpty($scope.models.users);
+    };
+  }
+
+  function FriendsController($scope, accountsService) {
+    $scope.models = {
+      users: accountsService.list().$object
+    };
+
+    $scope.hasUsers = function hasUsers() {
+      return !_.isEmpty($scope.models.users);
+    };
+  }
+
   angular.module("app")
     .controller("MainController", ["$scope", "authenticationService", MainController])
     .controller("HomeController", ["$scope", "authenticationService", HomeController])
     .controller("LogInController", ["$scope", "$state", "authenticationService", LogInController])
-    .controller("SignUpController", ["$scope", "authenticationService", SignUpController]);
+    .controller("SignUpController", ["$scope", "authenticationService", SignUpController])
+    .controller("ProfileController", ["$scope", ProfileController])
+    .controller("FeedController", ["$scope", FeedController])
+    .controller("UsersController", ["$scope", "$state", UsersController])
+    .controller("SearchController", ["$scope", SearchController])
+    .controller("RequestsController", ["$scope", "accountsService", RequestsController])
+    .controller("BrowseController", ["$scope", "accountsService", BrowseController])
+    .controller("FriendsController", ["$scope", "accountsService", FriendsController]);
 
 })(window, window.angular);

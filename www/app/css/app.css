@@ -13,3 +13,11 @@ body {
   position: absolute;
   text-align: center;
 }
+
+.mtm {
+  margin-top: 10px;
+}
+
+.mbm {
+  margin-bottom: 10px;
+}

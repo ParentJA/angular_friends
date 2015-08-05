@@ -24,11 +24,11 @@
     </div>
     <div id="navbar-content" class="collapse navbar-collapse" ng-if="isUserAuthenticated()">
       <ul class="nav navbar-nav">
-        <li ng-class="{active: $state.is('users.feed')}">
-          <a ui-sref="users.feed">Feed</a>
+        <li ng-class="{active: $state.is('feed')}">
+          <a ui-sref="feed">Feed</a>
         </li>
-        <li ng-class="{active: $state.is('users.home')}">
-          <a ui-sref="users.home">Users</a>
+        <li ng-class="{active: $state.is('users')}">
+          <a ui-sref="users">Users</a>
         </li>
       </ul>
       <div class="navbar-right">

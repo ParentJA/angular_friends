@@ -1,7 +1,7 @@
 <div class="middle-center">
   <h1>Welcome to Friends</h1>
   <div ng-if="isUserAuthenticated()">
-    <a class="btn btn-large btn-primary" ui-sref="user.feed">Continue to Feed</a>
+    <a class="btn btn-large btn-primary" ui-sref="feed">Continue to Feed</a>
   </div>
   <div ng-if="!isUserAuthenticated()">
     <a class="btn btn-large btn-primary" ui-sref="log_in">Log in</a>

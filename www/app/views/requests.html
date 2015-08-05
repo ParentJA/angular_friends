@@ -1,0 +1,14 @@
+<ul class="media-list" ng-if="hasUsers()">
+  <li class="media" ng-repeat="user in models.users">
+    <div class="media-left media-middle">
+      <img class="media-object img-circle" ng-src="{{ user.photo }}" width="55" height="55" ng-if="user.photo">
+      <div class="media-object" ng-if="!user.photo"></div>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ user.first_name }} {{ user.last_name }}</h4>
+      <a class="btn btn-default btn-xs accept" href="{% url 'users:accept' user.pk %}">Accept</a>
+      <a class="btn btn-default btn-xs reject" href="{% url 'users:reject' user.pk %}">Reject</a>
+    </div>
+  </li>
+</ul>
+<p class="text-center text-muted temporary" ng-if="!hasUsers()">No requests</p>

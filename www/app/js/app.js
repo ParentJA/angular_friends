@@ -26,6 +26,41 @@
         url: "/sign_up",
         templateUrl: "/static/views/sign_up.html",
         controller: "SignUpController"
+      })
+      .state("profile", {
+        url: "/profile",
+        templateUrl: "/static/views/profile.html",
+        controller: "ProfileController"
+      })
+      .state("feed", {
+        url: "/feed",
+        templateUrl: "/static/views/feed.html",
+        controller: "FeedController"
+      })
+      .state("users", {
+        url: "/users",
+        templateUrl: "/static/views/users.html",
+        controller: "UsersController"
+      })
+      .state("users.search", {
+        url: "/search",
+        templateUrl: "/static/views/search.html",
+        controller: "SearchController"
+      })
+      .state("users.requests", {
+        url: "/requests",
+        templateUrl: "/static/views/requests.html",
+        controller: "RequestsController"
+      })
+      .state("users.browse", {
+        url: "/browse",
+        templateUrl: "/static/views/browse.html",
+        controller: "BrowseController"
+      })
+      .state("users.friends", {
+        url: "/friends",
+        templateUrl: "/static/views/friends.html",
+        controller: "FriendsController"
       });
 
     //Default state...
