@@ -21,3 +21,21 @@ body {
 .mbm {
   margin-bottom: 10px;
 }
+
+.profile-image {
+  height: 204px;
+}
+
+.details-display p {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.details-display h4 {
+  margin-top: 0;
+}
+
+.details-list > li {
+  margin: 0 5px;
+  font-size: 16px;
+}

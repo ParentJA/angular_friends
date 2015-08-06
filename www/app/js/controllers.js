@@ -61,7 +61,21 @@
     }
   }
 
-  function ProfileController($scope) {}
+  function ProfileController($scope, user) {
+    var selected = "name";
+
+    $scope.models = {
+      user: user
+    };
+
+    $scope.isSelected = function isSelected(value) {
+      return selected === value;
+    };
+
+    $scope.setSelected = function setSelected(value) {
+      selected = value;
+    };
+  }
 
   function FeedController($scope, feedService) {
     $scope.models = {
@@ -138,7 +152,7 @@
     .controller("HomeController", ["$scope", "authenticationService", HomeController])
     .controller("LogInController", ["$scope", "$state", "authenticationService", LogInController])
     .controller("SignUpController", ["$scope", "authenticationService", SignUpController])
-    .controller("ProfileController", ["$scope", ProfileController])
+    .controller("ProfileController", ["$scope", "user", ProfileController])
     .controller("FeedController", ["$scope", "feedService", FeedController])
     .controller("UsersController", ["$state", UsersController])
     .controller("UsersListController", ["$scope", "users", UsersListController])

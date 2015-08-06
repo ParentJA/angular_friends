@@ -30,7 +30,12 @@
       .state("profile", {
         url: "/profile",
         templateUrl: "/static/views/profile.html",
-        controller: "ProfileController"
+        controller: "ProfileController",
+        resolve: {
+          user: function(authenticationService) {
+            return authenticationService.getAuthenticatedUser();
+          }
+        }
       })
       .state("feed", {
         url: "/feed",
