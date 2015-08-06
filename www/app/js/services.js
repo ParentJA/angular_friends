@@ -5,7 +5,7 @@
     this.signUp = function signUp(firstName, lastName, email, password) {
       var self = this;
 
-      return Restangular.all("user").post({
+      return Restangular.all("accounts").post({
         username: email,
         email: email,
         password: password,

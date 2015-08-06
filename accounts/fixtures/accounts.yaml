@@ -1,0 +1,99 @@
+- fields:
+    address: 310 P Street NW
+    date_joined: 2015-06-19 02:10:04+00:00
+    date_of_birth: 1984-08-10
+    email: parentj@eab.com
+    first_name: Admin
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2015-08-06 15:21:19+00:00
+    last_name: Superuser
+    password: pbkdf2_sha256$15000$mHvqUsfIM6n3$jlL3CJGIPmaAeeJzyBwTNTYk5QDEjhyhLcKHRLntrGg=
+    phone_number: 860-977-7458
+    photo: photos/no-image.jpg
+    user_permissions: []
+    username: parentj
+  model: accounts.user
+  pk: 1
+
+- fields:
+    address: 310 P Street NW
+    date_joined: 2015-06-19 02:12:06.748386+00:00
+    date_of_birth: 1984-08-10
+    email: jason.a.parent@gmail.com
+    first_name: Jason
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-08-06 15:20:57.959487+00:00
+    last_name: Parent
+    password: pbkdf2_sha256$15000$ZouF6lm91UzF$4CWVWOITwi1TTTiO7761Fajk0NczT3QjRbtONe7x5bk=
+    phone_number: 860-977-7458
+    photo: photos/no-image.jpg
+    user_permissions: []
+    username: jason.a.parent@gmail.com
+  model: accounts.user
+  pk: 2
+
+- fields:
+    address: 8168 Frances Ct
+    date_joined: 2015-08-06 15:16:58+00:00
+    date_of_birth: 1974-12-01
+    email: ava.pearson@example.com
+    first_name: Ava
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-08-06 15:16:58+00:00
+    last_name: Pearson
+    password: pbkdf2_sha256$15000$lKtHk2pSNmb9$zl95HR8psae0RXFvvTxnxpVajjXG0317eXXGzpu6SMc=
+    phone_number: 592-474-1602
+    photo: photos/ava_pearson.jpg
+    user_permissions: []
+    username: ava.pearson@example.com
+  model: accounts.user
+  pk: 3
+
+- fields:
+    address: 6402 Auerbach Ave
+    date_joined: 2015-08-06 15:22:37+00:00
+    date_of_birth: 1980-09-06
+    email: minnie.bates@example.com
+    first_name: Minnie
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-08-06 15:22:37+00:00
+    last_name: Bates
+    password: pbkdf2_sha256$15000$lKtHk2pSNmb9$zl95HR8psae0RXFvvTxnxpVajjXG0317eXXGzpu6SMc=
+    phone_number: 888-555-9729
+    photo: photos/minnie_bates.jpg
+    user_permissions: []
+    username: minnie.bates@example.com
+  model: accounts.user
+  pk: 4
+
+- fields:
+    address: 6132 Crescent Canyon St
+    date_joined: 2015-08-06 15:25:23+00:00
+    date_of_birth: 1979-07-05
+    email: allison.watts@example.com
+    first_name: Allison
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-08-06 15:25:23+00:00
+    last_name: Watts
+    password: pbkdf2_sha256$15000$lKtHk2pSNmb9$zl95HR8psae0RXFvvTxnxpVajjXG0317eXXGzpu6SMc=
+    phone_number: 791-422-8854
+    photo: photos/allison_watts.jpg
+    user_permissions: []
+    username: allison.watts@example.com
+  model: accounts.user
+  pk: 5
