@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^api/v1/auth/logout/$', LogOutView.as_view(), name='logout'),
     url(r'^api/v1/accounts/', include('accounts.urls')),
     url(r'^api/v1/users/', include('users.urls')),
+    url(r'^api/v1/friends/', 'users.apis.friends', name='friends'),
     url(r'^profile/$', 'accounts.views.profile_view', name='profile'),
     url(r'^profile/edit/$', 'accounts.views.profile_edit_view', name='profile_edit'),
     # url(r'^accounts/', include('accounts.urls', namespace='accounts')),

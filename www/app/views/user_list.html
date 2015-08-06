@@ -1,0 +1,16 @@
+<ul class="media-list" ng-if="hasUsers()">
+  <li class="media" ng-repeat="user in users">
+    <div class="media-left media-middle">
+      <img class="media-object img-circle" ng-src="{{ user.photo }}" width="55" height="55" ng-if="user.photo">
+      <div class="media-object" ng-if="!user.photo"></div>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ user.first_name }} {{ user.last_name }}</h4>
+      <a class="btn btn-default btn-xs add" ng-click="add(user)" ng-if="addButton">Add</a>
+      <a class="btn btn-default btn-xs remove" ng-click="remove(user)" ng-if="removeButton">Remove</a>
+      <a class="btn btn-default btn-xs accept" ng-click="accept(user)" ng-if="acceptButton">Accept</a>
+      <a class="btn btn-default btn-xs reject" ng-click="reject(user)" ng-if="rejectButton">Reject</a>
+    </div>
+  </li>
+</ul>
+<p class="text-center text-muted temporary" ng-if="!hasUsers()">No results</p>

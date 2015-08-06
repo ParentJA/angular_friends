@@ -1,19 +1,15 @@
 __author__ = 'jason.parent@carneylabs.com (Jason Parent)'
 
 # Django imports...
-from django.conf.urls import patterns, url
+from django.conf import settings
+from django.conf.urls import url
 
 # Local imports...
 from .apis import FeedView
+from accounts.apis import UserViewSet
 
-urlpatterns = patterns('users.views',
-    url(r'^$', 'home_view', name='home'),
-    url(r'^list/$', 'list_view', name='list'),
-    url(r'^requests/$', 'requests_view', name='requests'),
-    url(r'^friends/$', 'friends_view', name='friends'),
-    url(r'^friends/(?P<user_id>\d+)/add/$', 'add_view', name='add'),
-    url(r'^friends/(?P<user_id>\d+)/accept/$', 'accept_view', name='accept'),
-    url(r'^friends/(?P<user_id>\d+)/reject/$', 'reject_view', name='reject'),
-    url(r'^feed/$', FeedView.as_view(), name='feed'),
-    # url(r'^feed/$', 'feed_view', name='feed'),
-)
+urlpatterns = [
+    url(r'^$', UserViewSet.as_view(settings.REST_METHODS)),
+    url(r'^(?P<pk>\d+)/$', UserViewSet.as_view(settings.REST_METHODS_PK)),
+    url(r'^feed/$', FeedView.as_view(), name='feed')
+]

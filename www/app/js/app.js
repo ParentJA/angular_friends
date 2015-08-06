@@ -50,17 +50,32 @@
       .state("users.requests", {
         url: "/requests",
         templateUrl: "/static/views/requests.html",
-        controller: "RequestsController"
+        controller: "UsersListController",
+        resolve: {
+          users: function(accountsService) {
+            return accountsService.list(null, "requests").$object;
+          }
+        }
       })
       .state("users.browse", {
         url: "/browse",
         templateUrl: "/static/views/browse.html",
-        controller: "BrowseController"
+        controller: "UsersListController",
+        resolve: {
+          users: function(accountsService) {
+            return accountsService.list().$object;
+          }
+        }
       })
       .state("users.friends", {
         url: "/friends",
         templateUrl: "/static/views/friends.html",
-        controller: "FriendsController"
+        controller: "UsersListController",
+        resolve: {
+          users: function(accountsService) {
+            return accountsService.list(null, "friends").$object;
+          }
+        }
       });
 
     //Default state...

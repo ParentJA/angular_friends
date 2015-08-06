@@ -79,10 +79,14 @@
   }
 
   function accountsService(Restangular) {
-    this.list = function list(search) {
+    this.list = function list(search, target) {
       search = search || "";
+      target = target || "";
 
-      return Restangular.all("accounts").getList({s: search});
+      return Restangular.all("accounts").getList({
+        s: search,
+        t: target
+      });
     };
 
     this.retrieve = function retrieve() {
@@ -108,9 +112,46 @@
     };
   }
 
+  function friendsService(Restangular, FriendshipAction) {
+    this.add = function add(user) {
+      return Restangular.all("friends").post({
+        user_id: user.id,
+        action: FriendshipAction.ADD
+      });
+    };
+
+    this.remove = function remove(user) {
+      return Restangular.all("friends").post({
+        user_id: user.id,
+        action: FriendshipAction.REMOVE
+      });
+    };
+
+    this.accept = function accept(user) {
+      return Restangular.all("friends").post({
+        user_id: user.id,
+        action: FriendshipAction.ACCEPT
+      });
+    };
+
+    this.reject = function reject(user) {
+      return Restangular.all("friends").post({
+        user_id: user.id,
+        action: FriendshipAction.REJECT
+      });
+    };
+  }
+
   angular.module("app")
+    .constant("FriendshipAction", {
+      ADD: "add",
+      REMOVE: "remove",
+      ACCEPT: "accept",
+      REJECT: "reject"
+    })
     .service("authenticationService", ["$cookies", "$state", "Restangular", authenticationService])
     .service("accountsService", ["Restangular", accountsService])
-    .service("feedService", ["Restangular", feedService]);
+    .service("feedService", ["Restangular", feedService])
+    .service("friendsService", ["Restangular", "FriendshipAction", friendsService]);
 
 })(window, window.angular);

@@ -34,6 +34,20 @@ class UserViewSet(viewsets.ModelViewSet):
         return [permissions.IsAuthenticated(), IsAccountOwner()]
 
     def list(self, request):
+        target = request.query_params.get('t', '')
+
+        if target == 'requests':
+            friendships = Friendship.objects.pending_received(request.user)
+            users = Friendship.user_list_friends(request.user, friendships)
+
+            return Response(data=UserSerializer(users, many=True).data)
+
+        elif target == 'friends':
+            friendships = Friendship.objects.current(request.user)
+            users = Friendship.user_list_friends(request.user, friendships)
+
+            return Response(data=UserSerializer(users, many=True).data)
+
         search = request.query_params.get('s', '')
 
         query = Q(
