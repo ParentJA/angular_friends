@@ -37,6 +37,16 @@
           }
         }
       })
+      .state("profile_edit", {
+        url: "/profile_edit",
+        templateUrl: "/static/views/profile_edit.html",
+        controller: "ProfileEditController",
+        resolve: {
+          user: function(authenticationService) {
+            return authenticationService.getAuthenticatedUser();
+          }
+        }
+      })
       .state("feed", {
         url: "/feed",
         templateUrl: "/static/views/feed.html",

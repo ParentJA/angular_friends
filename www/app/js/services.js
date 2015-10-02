@@ -89,19 +89,19 @@
       });
     };
 
-    this.retrieve = function retrieve() {
+    this.retrieve = function retrieve(id) {
       return Restangular.one("accounts", id).get();
     };
 
-    this.create = function create() {
+    this.create = function create(data) {
       return Restangular.all("accounts").post(data);
     };
 
-    this.update = function update() {
+    this.update = function update(id, data) {
       return Restangular.one("accounts", id).customPUT(data);
     };
 
-    this.destroy = function destroy() {
+    this.destroy = function destroy(id) {
       return Restangular.one("accounts", id).remove();
     };
   }

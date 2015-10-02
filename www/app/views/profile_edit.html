@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Edit profile!</h4>
+      </div>
+      <div class="panel-body">
+        <form name="models.editProfileForm" ng-submit="editProfile()">
+          <div class="form-group">
+            <label for="photo">Photo:</label>
+            <input id="photo" class="form-control" type="file" ng-model="models.user.photo">
+          </div>
+          <div class="form-group">
+            <label for="date_of_birth">Date of birth:</label>
+            <input id="date_of_birth" class="form-control" type="text" ng-model="models.user.date_of_birth">
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input id="address" class="form-control" type="text" ng-model="models.user.address">
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone number:</label>
+            <input id="phone_number" class="form-control" type="tel" ng-model="models.user.phone_number">
+          </div>
+          <button class="btn btn-primary" type="submit" ng-disabled="models.editProfileForm.$invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

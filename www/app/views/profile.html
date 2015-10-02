@@ -4,7 +4,7 @@
          ng-if="models.user.photo">
     <div class="media-object center-block" ng-if="!models.user.photo"></div>
   </a>
-  <div>
+  <div class="details-display">
     <div ng-show="isSelected('name')">
       <p>Hi, my name is</p>
       <h4>{{ models.user.first_name }} {{ models.user.last_name }}</h4>
@@ -26,7 +26,7 @@
       <h4>{{ models.user.phone_number }}</h4>
     </div>
   </div>
-  <ul class="list-inline details-list">
+  <ul class="list-inline">
     <li ng-mouseenter="setSelected('name')">
       <span class="fa fa-user"></span>
     </li>

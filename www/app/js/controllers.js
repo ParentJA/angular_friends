@@ -77,6 +77,17 @@
     };
   }
 
+  function ProfileEditController($scope, user, accountsService) {
+    $scope.models = {
+      editProfileForm: "",
+      user: user
+    };
+
+    $scope.editProfile = function editProfile() {
+      accountsService.update($scope.models.user.id, $scope.models.user);
+    }
+  }
+
   function FeedController($scope, feedService) {
     $scope.models = {
       events: [{
@@ -153,6 +164,7 @@
     .controller("LogInController", ["$scope", "$state", "authenticationService", LogInController])
     .controller("SignUpController", ["$scope", "authenticationService", SignUpController])
     .controller("ProfileController", ["$scope", "user", ProfileController])
+    .controller("ProfileEditController", ["$scope", "user", "accountsService", ProfileEditController])
     .controller("FeedController", ["$scope", "feedService", FeedController])
     .controller("UsersController", ["$state", UsersController])
     .controller("UsersListController", ["$scope", "users", UsersListController])
